@@ -15,7 +15,7 @@ function App() {
         <Navbar />
         <div className="container">
           <div className="menuContainer">
-            <Menu />{" "}
+            <Menu />
           </div>
           <div className="contentContainer">
             {/* <QueryClientProvider client={queryClient}> */}
