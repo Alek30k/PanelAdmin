@@ -7,8 +7,26 @@ import {
 import Home from "./pages/home/Home";
 import Users from "./pages/users/Users";
 import Products from "./pages/products/Products";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
+  const Layout = () => {
+    return (
+      <div className="main">
+        <Navbar />
+        <div className="container">
+          <div className="menuContainer">{/* <Menu /> */}N</div>
+          <div className="contentContainer">
+            <QueryClientProvider client={queryClient}>
+              <Outlet />
+            </QueryClientProvider>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
