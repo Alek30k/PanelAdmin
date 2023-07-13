@@ -34,10 +34,10 @@ const Home = () => {
       </div>
       <div className="box box7">{/* <BigChartBox /> */}</div>
       <div className="box box8">
-        {/* <BarChartBox {...barChartBoxVisit} /> */}
+        <BarChartBox {...barChartBoxVisit} />
       </div>
       <div className="box box9">
-        {/* <BarChartBox {...barChartBoxRevenue} /> */}
+        <BarChartBox {...barChartBoxRevenue} />
       </div>
     </div>
   );
