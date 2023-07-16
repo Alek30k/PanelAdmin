@@ -1,6 +1,8 @@
 import { GridColDef } from "@mui/x-data-grid";
 import "./add.scss";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+// import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import axios from "axios";
 
 type Props = {
   slug: string;
@@ -9,41 +11,43 @@ type Props = {
 };
 
 const Add = (props: Props) => {
-  // TEST THE API
-
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation({
-    mutationFn: () => {
-      return fetch(`http://localhost:8800/api/${props.slug}s`, {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: 111,
-          img: "",
-          lastName: "Hello",
-          firstName: "Test",
-          email: "testme@gmail.com",
-          phone: "123 456 789",
-          createdAt: "01.02.2023",
-          verified: true,
-        }),
-      });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries([`all${props.slug}s`]);
-    },
+  const [product, setProduct] = useState({
+    name: "",
+    cover: "",
+    price: "",
+    desc: "",
+    img: "",
+    catCat: "",
+    subCategory: "",
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleChange = (e: any) => {
+    setProduct((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  // TEST THE API
+
+  // const queryClient = useQueryClient();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     //add new item
-    mutation.mutate();
-    props.setOpen(false);
+    try {
+      await axios.post(`http://localhost:8800/api/${props.slug}s`, {
+        ...product,
+      });
+    } catch (err) {
+      console.log(err);
+
+      // mutation.mutate();
+      props.setOpen(false);
+    }
   };
   return (
     <div className="add">
@@ -54,11 +58,16 @@ const Add = (props: Props) => {
         <h1>Add new {props.slug}</h1>
         <form onSubmit={handleSubmit}>
           {props.columns
-            .filter((item) => item.field !== "id" && item.field !== "img")
+            .filter((item) => item.field !== "_id")
             .map((column) => (
               <div className="item">
                 <label>{column.headerName}</label>
-                <input type={column.type} placeholder={column.field} />
+                <input
+                  onChange={handleChange}
+                  type={column.type}
+                  placeholder={column.field}
+                  name={column.field}
+                />
               </div>
             ))}
           <button>Send</button>

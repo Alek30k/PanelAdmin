@@ -3,53 +3,59 @@ import "./Products.scss";
 import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/add/Add";
 import { GridColDef } from "@mui/x-data-grid";
-import { products } from "../../data";
+// import { products } from "../../data";
+import { useQuery } from "@tanstack/react-query";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "_id", headerName: "ID", width: 90 },
+
   {
-    field: "img",
-    headerName: "Image",
+    field: "cover",
+    headerName: "Cover",
+    type: "string",
     width: 100,
     renderCell: (params) => {
-      return <img src={params.row.img || "/noavatar.png"} alt="" />;
+      return <img src={params.row.cover || "/noavatar.png"} alt="" />;
     },
   },
   {
-    field: "title",
+    field: "img",
+    headerName: "Img",
     type: "string",
-    headerName: "Title",
-    width: 250,
+    width: 100,
+    // renderCell: (params) => {
+    //   return <img src={params.row.cover || "/noavatar.png"} alt="" />;
+    // },
   },
   {
-    field: "color",
+    field: "name",
     type: "string",
-    headerName: "Color",
-    width: 150,
+    headerName: "Name",
+    width: 250,
   },
   {
     field: "price",
     type: "string",
     headerName: "Price",
-    width: 200,
+    width: 100,
   },
   {
-    field: "producer",
-    headerName: "Producer",
+    field: "desc",
     type: "string",
-    width: 200,
+    headerName: "Desc",
+    width: 250,
   },
   {
-    field: "createdAt",
-    headerName: "Created At",
+    field: "catCat",
+    headerName: "CatCat",
+    type: "string",
+    width: 100,
+  },
+  {
+    field: "subCategory",
+    headerName: "SubCategory",
     width: 200,
     type: "string",
-  },
-  {
-    field: "inStock",
-    headerName: "In Stock",
-    width: 150,
-    type: "boolean",
   },
 ];
 
@@ -58,13 +64,11 @@ const Products = () => {
 
   // TEST THE API
 
-  // const { isLoading, data } = useQuery({
-  //   queryKey: ["allproducts"],
-  //   queryFn: () =>
-  //     fetch("http://localhost:8800/api/products").then(
-  //       (res) => res.json()
-  //     ),
-  // });
+  const { isLoading, data } = useQuery({
+    queryKey: ["allproducts"],
+    queryFn: () =>
+      fetch("http://localhost:8800/api/products").then((res) => res.json()),
+  });
 
   return (
     <div className="products">
@@ -72,14 +76,14 @@ const Products = () => {
         <h1>Products</h1>
         <button onClick={() => setOpen(true)}>Add New Products</button>
       </div>
-      <DataTable slug="products" columns={columns} rows={products} />
+      {/* <DataTable slug="products" columns={columns} rows={products} /> */}
       {/* TEST THE API */}
 
-      {/* {isLoading ? (
+      {isLoading ? (
         "Loading..."
       ) : (
         <DataTable slug="products" columns={columns} rows={data} />
-      )} */}
+      )}
       {open && <Add slug="product" columns={columns} setOpen={setOpen} />}
     </div>
   );
