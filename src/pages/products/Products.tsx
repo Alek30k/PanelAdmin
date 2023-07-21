@@ -7,43 +7,47 @@ import { GridColDef } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
 
 const columns: GridColDef[] = [
-  { field: "_id", headerName: "ID", width: 90 },
+  { field: "_id", headerName: "ID", width: 50 },
 
   {
     field: "cover",
     headerName: "Cover",
     type: "string",
-    width: 100,
+    width: 60,
     renderCell: (params) => {
       return <img src={params.row.cover || "/noavatar.png"} alt="" />;
     },
   },
-  {
-    field: "img",
-    headerName: "Img",
-    type: "string",
-    width: 100,
-    // renderCell: (params) => {
-    //   return <img src={params.row.cover || "/noavatar.png"} alt="" />;
-    // },
-  },
+
   {
     field: "name",
     type: "string",
     headerName: "Name",
-    width: 250,
+    width: 150,
+  },
+  {
+    field: "seccion",
+    type: "string",
+    headerName: "Sección",
+    width: 100,
   },
   {
     field: "price",
     type: "string",
     headerName: "Price",
-    width: 100,
+    width: 60,
+  },
+  {
+    field: "discount",
+    type: "string",
+    headerName: "Discount",
+    width: 60,
   },
   {
     field: "desc",
     type: "string",
     headerName: "Desc",
-    width: 250,
+    width: 300,
   },
   {
     field: "catCat",

@@ -21,11 +21,22 @@ const Add = (props: Props) => {
     subCategory: "",
   });
 
+  console.log(product);
+
   const handleChange = (e: any) => {
     setProduct((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const handleImg = (e: any) => {
+    setProduct((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value.split(","),
       };
     });
   };
@@ -44,10 +55,8 @@ const Add = (props: Props) => {
       });
     } catch (err) {
       console.log(err);
-
-      // mutation.mutate();
-      props.setOpen(false);
     }
+    props.setOpen(false);
   };
   return (
     <div className="add">
@@ -70,6 +79,15 @@ const Add = (props: Props) => {
                 />
               </div>
             ))}
+          <input
+            name="img"
+            type="text"
+            className="itemImg"
+            placeholder="Separate the Img with commas."
+            onChange={handleImg}
+            multiple
+          ></input>
+
           <button>Send</button>
         </form>
       </div>
