@@ -1,6 +1,25 @@
+import axios from "axios";
 import "./navbar.scss";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")!);
+
+  const navigate = useNavigate();
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("https://csarta.onrender.com/api/auth/logout");
+      localStorage.setItem("currentUser", null!);
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="navbar">
       <div className="logo">
@@ -15,13 +34,23 @@ const Navbar = () => {
           <img src="/notifications.svg" alt="" />
           <span>1</span>
         </div>
-        <div className="user">
+        <div className="user" onClick={() => setOpenModal(!openModal)}>
           <img
-            src="https://images.pexels.com/photos/11038549/pexels-photo-11038549.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            src={currentUser?.img || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
+            className="user"
             alt=""
           />
-          <span>Jane</span>
+          <span>{currentUser?.username}</span>
         </div>
+        {openModal && (
+          <div className="menuAvatar">
+            <div className="buttonLogout">
+              <button onClick={handleLogout}>
+                {!currentUser ? "Iniciar sesión" : "Cerrar Sesión"}
+              </button>
+            </div>
+          </div>
+        )}
         <img src="/settings.svg" alt="" className="icon" />
       </div>
     </div>

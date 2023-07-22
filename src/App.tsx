@@ -1,5 +1,10 @@
 import Home from "./pages/home/Home";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  Link,
+} from "react-router-dom";
 import Users from "./pages/users/Users";
 import Products from "./pages/products/Products";
 import Navbar from "./components/navbar/Navbar";
@@ -14,6 +19,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 function App() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")!);
+
   const Layout = () => {
     return (
       <div className="main">
@@ -22,11 +29,15 @@ function App() {
           <div className="menuContainer">
             <Menu />
           </div>
-          <div className="contentContainer">
-            <QueryClientProvider client={queryClient}>
-              <Outlet />
-            </QueryClientProvider>
-          </div>
+          {!currentUser ? (
+            "Debes loguearte para ver panel de admin!!!"
+          ) : (
+            <div className="contentContainer">
+              <QueryClientProvider client={queryClient}>
+                <Outlet />
+              </QueryClientProvider>
+            </div>
+          )}
         </div>
         <Footer />
       </div>

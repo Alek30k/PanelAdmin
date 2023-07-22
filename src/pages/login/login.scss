@@ -1,2 +1,54 @@
 .login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(17, 26, 44);
+
+  .cardlogin {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: white;
+    border-radius: 10px;
+    height: 550px;
+    overflow: hidden;
+
+    form {
+      width: 360px;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      h1 {
+        color: gray;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      label {
+        color: gray;
+        font-size: 18px;
+      }
+
+      .input {
+        border: none;
+        padding: 20px 10px;
+        border: 1px solid rgb(216, 214, 214);
+      }
+
+      .button {
+        border: none;
+        padding: 20px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        background-color: #0715cf;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+    }
+  }
 }
