@@ -71,7 +71,9 @@ const Products = () => {
   const { isLoading, data } = useQuery({
     queryKey: ["allproducts"],
     queryFn: () =>
-      fetch("http://localhost:8800/api/products").then((res) => res.json()),
+      fetch("https://csarta.onrender.com/api/products").then((res) =>
+        res.json()
+      ),
   });
 
   return (

@@ -7,7 +7,7 @@ import Add from "../../components/add/Add";
 import { useQuery } from "@tanstack/react-query";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "_id", headerName: "ID", width: 90 },
   {
     field: "img",
     headerName: "Avatar",
@@ -17,17 +17,17 @@ const columns: GridColDef[] = [
     },
   },
   {
-    field: "firstName",
+    field: "username",
     type: "string",
     headerName: "First name",
     width: 150,
   },
-  {
-    field: "lastName",
-    type: "string",
-    headerName: "Last name",
-    width: 150,
-  },
+  // {
+  //   field: "lastName",
+  //   type: "string",
+  //   headerName: "Last name",
+  //   width: 150,
+  // },
   {
     field: "email",
     type: "string",
@@ -35,9 +35,9 @@ const columns: GridColDef[] = [
     width: 200,
   },
   {
-    field: "phone",
+    field: "country",
     type: "string",
-    headerName: "Phone",
+    headerName: "Country",
     width: 200,
   },
   {
@@ -62,7 +62,7 @@ const Users = () => {
   const { isLoading, data } = useQuery({
     queryKey: ["allusers"],
     queryFn: () =>
-      fetch("http://localhost:8800/api/users").then((res) => res.json()),
+      fetch("https://csarta.onrender.com/api/users").then((res) => res.json()),
   });
 
   return (
