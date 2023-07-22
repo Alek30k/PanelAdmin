@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [err, setErr] = useState(null);
+  // const [err, setErr] = useState(null);
 
   const navigate = useNavigate();
 
@@ -52,7 +52,7 @@ const Login = () => {
           <button type="submit" className="button">
             Iniciar Sesión
           </button>
-          {err && err}
+          {/* {err && err} */}
         </form>
       </div>
     </div>
