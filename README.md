@@ -2,7 +2,7 @@
 
 React-Node.js-typescript-MongoDB
 
-Deploy: panel-admin-two.vercel.app
+Deploy: panel-admin-35n9ntcvh-alek30k.vercel.app
 
 
 ![Selección_002](https://github.com/Alek30k/PanelAdmin/assets/101005998/0c2005a4-9733-4284-9ac2-aae1eb0f88b8)
