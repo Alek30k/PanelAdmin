@@ -21,8 +21,6 @@ const Add = (props: Props) => {
     subCategory: "",
   });
 
-  console.log(product);
-
   const handleChange = (e: any) => {
     setProduct((prev) => {
       return {
@@ -50,7 +48,7 @@ const Add = (props: Props) => {
 
     //add new item
     try {
-      await axios.post(`http://localhost:8800/api/${props.slug}s`, {
+      await axios.post(`https://csarta.onrender.com/api/${props.slug}s`, {
         ...product,
       });
     } catch (err) {
