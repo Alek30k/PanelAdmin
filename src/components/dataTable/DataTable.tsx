@@ -16,7 +16,7 @@ const DataTable = (props: Props) => {
 
   const mutation = useMutation({
     mutationFn: (id: number) => {
-      return fetch(`http://localhost:8800/api/${props.slug}/${id}`, {
+      return fetch(`https://csarta.onrender.com/api/${props.slug}/${id}`, {
         method: "delete",
       });
     },
