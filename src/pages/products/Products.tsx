@@ -10,19 +10,19 @@ const columns: GridColDef[] = [
   { field: "_id", headerName: "ID", width: 50 },
 
   {
-    field: "cover",
-    headerName: "Cover",
+    field: "img",
+    headerName: "Img",
     type: "string",
     width: 60,
     renderCell: (params) => {
-      return <img src={params.row.cover || "/noavatar.png"} alt="" />;
+      return <img src={params.row.img[0] || "/noavatar.png"} alt="" />;
     },
   },
 
   {
     field: "name",
     type: "string",
-    headerName: "Name",
+    headerName: "Name Product",
     width: 150,
   },
   {
@@ -46,20 +46,20 @@ const columns: GridColDef[] = [
   {
     field: "desc",
     type: "string",
-    headerName: "Desc",
+    headerName: "Description",
     width: 300,
-  },
-  {
-    field: "catCat",
-    headerName: "CatCat",
-    type: "string",
-    width: 100,
   },
   {
     field: "subCategory",
     headerName: "SubCategory",
     width: 200,
     type: "string",
+  },
+  {
+    field: "catCat",
+    headerName: "CatCat",
+    type: "string",
+    width: 100,
   },
 ];
 
